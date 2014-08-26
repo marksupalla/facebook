@@ -41,3 +41,7 @@ exports.authenticate = function(req, res){
   });
 };
 
+exports.edit = function(req, res){
+  res.render('users/edit');
+};
+
