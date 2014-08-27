@@ -38,7 +38,6 @@ describe('users', function(){
         expect(res.status).to.equal(200);
         expect(res.text).to.include('Email');
         expect(res.text).to.include('Phone');
-        expect(res.text).to.include('Visible');
         done();
       });
     });

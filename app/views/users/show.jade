@@ -1,0 +1,27 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-9
+      .row
+        .col-xs-12
+          h2= user.name
+      .row
+        .col-xs-12
+          h2 
+          table.table.table-striped.table-hover.table-bordered
+            thead
+              tr
+                th Email
+                th Phone
+                th Facebook
+                th Twitter
+                th Visible
+            tbody
+              each user in users
+                tr
+                  td= user.email
+                  td= user.phone
+                  td= user.facebook
+                  td= user.twitter
+                  td= user.isVisible
+

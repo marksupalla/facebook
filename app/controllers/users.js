@@ -45,3 +45,13 @@ exports.edit = function(req, res){
   res.render('users/edit');
 };
 
+exports.update = function(req, res){
+  res.locals.user.save(req.body, function(){
+    res.redirect('/profile');
+  });
+};
+exports.show = function(req, res){
+  User.findById(req.params.id, function(err, user)
+    res.render('/users/show', {user:user});
+  });
+};
