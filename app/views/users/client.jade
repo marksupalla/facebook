@@ -1,0 +1,27 @@
+
+extends ../shared/template
+block content
+  h2 Edit Profile
+  .row
+    .col-xs-12
+      form(role='form', method='post', action='/message/#{client._id}')
+        .radio
+          label
+            input(type='radio', name='mtype', value='text', checked=true)
+            span Text
+        .radio
+          label
+            input(type='radio', name='mtype', value='email')
+            span Email
+        .radio
+          label
+            input(type='radio', name='mtype', value='internal')
+            span Internal
+        .form-group
+          label(for='message') Message
+          textarea.form-control#message(name='message')
+
+        button.btn.btn-primary(type='submit') Submit
+    .col-xs-6
+
+block scripts

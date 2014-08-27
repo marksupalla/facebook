@@ -54,5 +54,32 @@ describe('users', function(){
       });
     });
   });
+  describe('get /users', function(){
+    it('should show all users', function(done){
+      request(app)
+      .get('/users')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('bob');
+        expect(res.text).to.not.include('Sue');
+        done();
+      });
+    });
+  });
+
+  describe('post /message/3', function(){
+    it('should the edit profile page', function(done){
+      request(app)
+      .post('/messages/000000000000000000000001')
+      .set('cookie', cookie)
+      .end(function(err, res){
+      .send('mtype=text&message=hi')
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/bob@aol.com');
+        done();
+      });
+    });
+  });
 });
 

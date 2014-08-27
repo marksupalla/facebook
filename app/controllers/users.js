@@ -51,7 +51,27 @@ exports.update = function(req, res){
   });
 };
 exports.show = function(req, res){
-  User.findById(req.params.id, function(err, user)
-    res.render('/users/show', {user:user});
+  res.render('users/show');
+};
+exports.index = function(req, res){
+  User.find({isVisible:true}, function(err, users){
+    res.render('users/index', {users:users});
+  });
+};
+
+exports.client = function(req, res){
+  User.findOne({isVisible:true}, function(err, client){
+    if(client){
+      res.render('users/client', {client:client});
+    }else{
+      res.redirect('/users');
+    }
+  });
+};
+exports.message = function(req, res){
+  User.findById(req.params.userId, function(err, receiver){
+    res.locals.user.send(receiver, req.body, function(){
+      res.redirect('/users/' + receiver.email);
+    });
   });
 };

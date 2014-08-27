@@ -29,7 +29,7 @@ describe('User', function(){
     });
   });
 
-describe('#save', function(){
+  describe('#save', function(){
     it('should save a user', function(){
       var u = new User(),
           o = {x:3, visible:'public', foo:'bar'};
@@ -39,6 +39,13 @@ describe('#save', function(){
         expect(user.isVisible).to.be.true;
         expect(user.foo).to.equal('bar');
         expect(user.baz).to.equal('bim');
+      });
+    });
+  });
+  describe('.find', function(){
+    it('should find all users who are public', function(){
+      User.find({isVisible:true}, function(err, users){
+        expect(users).to.have.length(1);
       });
     });
   });
