@@ -1,7 +1,7 @@
 ## name of project
 ### Code Badges
 [![Build Status](https://travis-ci.org/marksupalla/facebook.svg?branch=master)](https://travis-ci.org/marksupalla/facebook)
-coverage status icon
+
 
 ### About
 write a description about your project
