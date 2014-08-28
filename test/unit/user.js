@@ -49,6 +49,26 @@ describe('User', function(){
       });
     });
   });
+  describe('.findOne', function(){
+    it('should find a specific user', function(done){
+      User.findOne({email:'bob@aol.com', isVisible:true}, function(err, user){
+        expect(user.email).to.equal('bob@aol.com');
+        done();
+      });
+    });
+  });
+  describe('#send', function(){
+    it('should send a text message to a user', function(done){
+      User.findById('000000000000000000000001', function(err, sender){
+        User.findById('000000000000000000000002', function(err, receiver){
+          sender.send(receiver, {mtype:'text', message:'yo'}, function(err, response){
+            expect(response.sid).to.be.ok;
+            done();
+          });
+        });
+      });
+    });
+  });
 });
 
 

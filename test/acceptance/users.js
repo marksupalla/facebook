@@ -46,8 +46,8 @@ describe('users', function(){
     it('should the edit profile page', function(done){
       request(app)
       .get('/profile')
-      .set('cookie', cookie)
       .send('_method=put&email=bob%40aol.com&phone=1234567891&photo=&tagline=asas&facebook=me&twitter=me')
+      .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(302);
         done();
@@ -68,13 +68,37 @@ describe('users', function(){
     });
   });
 
-  describe('post /message/3', function(){
-    it('should the edit profile page', function(done){
+  describe('get /users/bob@aol.com', function(){
+    it('should show a specific user', function(done){
       request(app)
-      .post('/messages/000000000000000000000001')
+      .get('/users/bob@aol.com')
       .set('cookie', cookie)
       .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('bob@aol.com');
+        done();
+      });
+    });
+
+    it('should NOT show a specific user - not public', function(done){
+      request(app)
+      .get('/users/sue@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users');
+        done();
+      });
+    });
+  });
+
+  describe('post /message/3', function(){
+    it('should send a text', function(done){
+      request(app)
+      .post('/message/000000000000000000000001')
+      .set('cookie', cookie)
       .send('mtype=text&message=hi')
+      .end(function(err, res){
         expect(res.status).to.equal(302);
         expect(res.headers.location).to.equal('/users/bob@aol.com');
         done();

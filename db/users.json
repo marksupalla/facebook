@@ -1,12 +1,14 @@
 {
   "_id" : {"$oid":"000000000000000000000001"},
   "email" : "bob@aol.com",
+  "phone" : "615-585-2968",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "isVisible" : true
 }
 {
   "_id" : {"$oid":"000000000000000000000002"},
   "email" : "sue@aol.com",
+  "phone" : "615-585-2968",
   "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",
   "isVisible" : false
 }

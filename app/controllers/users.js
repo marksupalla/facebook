@@ -60,7 +60,7 @@ exports.index = function(req, res){
 };
 
 exports.client = function(req, res){
-  User.findOne({isVisible:true}, function(err, client){
+  User.findOne({email:req.params.email, isVisible:true}, function(err, client){
     if(client){
       res.render('users/client', {client:client});
     }else{
